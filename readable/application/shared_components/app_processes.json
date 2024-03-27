@@ -1,0 +1,27 @@
+[
+  {
+    "id":"43992776754269001"
+   ,"Identification":{
+      "Name":"DOWNLOAD_OBJECT"
+     ,"Type":"NATIVE_PLSQL"
+    }
+   ,"Source":{
+      "Location":"Local Database"
+     ,"Language":"PL\/SQL"
+     ,"PL\/SQL Code":"declare\r\n  l_file blob;\r\n  l_mime_type varchar2(32767);\r\nbegin\r\n\r\n  l_file := dbms_cloud.get_object(\r\n    credential_name =\u003E :CREDENTIAL_NAME,\r\n    object_uri      =\u003E :LOCATION_URI || :APP_OBJECT_NAME);\r\n\r\n  l_mime_type := \u0027application\/octet-stream\u0027;\r\n\r\n  sys.htp.init;\r\n  sys.owa_util.mime_header(l_mime_type, false);\r\n  sys.htp.p(\u0027content-length: \u0027 || dbms_lob.getlength(l_file));\r\n  sys.htp.p(\u0027content-disposition: filename=\"\u0027 || :app_object_name || \u0027\"\u0027);\r\n  sys.owa_util.http_header_close;\r\n  sys.wpg_docload.download_file(l_file);\r\n\r\n  apex_application.stop_apex_engine;\r\n\r\nend;\r\n"
+    }
+   ,"Execution":{
+      "Sequence":1
+     ,"Point":"Ajax Callback"
+    }
+   ,"Server-side Condition":{
+      "Type":"User is Authenticated (not public)"
+    }
+   ,"Security":{
+      "Authorization Scheme":"MODEL.LOV.MUST_NOT_BE_PUBLIC_USER"
+    }
+   ,"Subscription":{
+      "Version Number":41014502103331
+    }
+  }
+]

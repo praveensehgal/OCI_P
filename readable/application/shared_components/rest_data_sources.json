@@ -1,0 +1,161 @@
+[
+  {
+    "id":"44009102629006811"
+   ,"Identification":{
+      "Name":"PRINT_SOURCE"
+    }
+   ,"Source":{
+      "Type":"OCI"
+     ,"Remote Server":"zybyyiw6w4q-us-ashburn-1-functions-oci-oraclecloud-com-20181201-functions (44007841547006799)"
+     ,"URL Path Prefix":"\/ocid1.fnfunc.oc1.iad.aaaaaaaapimdjb232yfpqc6ixfkv2jh7qio7smzn2uz5stfyeze4uc5xt7tq\/actions\/invoke"
+    }
+   ,"Authentication":{
+      "Credentials":"PRINT_CREDS (44006627658965524)"
+    }
+   ,"Synchronization":{
+      "Job is Active":false
+     ,"Local Table Owner":"Parsing Schema"
+    }
+   ,"Advanced":{
+      "Static ID":"print_source"
+     ,"Pass ECID":"Application Default"
+    }
+   ,"Data Profiles":{
+      "id":"44008069616006801"
+     ,"Identification":{
+        "Name":"PRINT_SOURCE"
+      }
+     ,"Data Profile":{
+        "Format":"JSON"
+       ,"Row Selector":"items"
+       ,"Contains Single Row":false
+       ,"Use Raw Selectors":false
+      }
+     ,"Advanced":{
+        "Encoding":"Database Character Set"
+      }
+     ,"Columns":[
+        {
+          "id":"44008291458006807"
+         ,"Identification":{
+            "Column Name":"COLUMN_1_ID"
+          }
+         ,"Source":{
+            "Type":"Data"
+           ,"Data Type":"NUMBER"
+           ,"Primary Key":false
+          }
+         ,"Parsing":{
+            "Path Expression":"id"
+          }
+         ,"Remote REST Data Source Server":{
+            "Filterable":true
+          }
+         ,"Advanced":{
+            "Sequence":1
+           ,"Hidden":false
+          }
+        }
+       ,{
+          "id":"44008578852006808"
+         ,"Identification":{
+            "Column Name":"COLUMN_2_NAME"
+          }
+         ,"Source":{
+            "Type":"Data"
+           ,"Data Type":"VARCHAR2"
+           ,"Maximum Length":2000
+           ,"Primary Key":false
+          }
+         ,"Parsing":{
+            "Path Expression":"name"
+          }
+         ,"Remote REST Data Source Server":{
+            "Filterable":true
+          }
+         ,"Advanced":{
+            "Sequence":2
+           ,"Hidden":false
+          }
+        }
+       ,{
+          "id":"44008823621006808"
+         ,"Identification":{
+            "Column Name":"COLUMN_3_HIREDATE"
+          }
+         ,"Source":{
+            "Type":"Data"
+           ,"Data Type":"DATE"
+           ,"Primary Key":false
+          }
+         ,"Parsing":{
+            "Path Expression":"hire-date"
+           ,"Format Mask":"YYYY-MM-DD\"T\"HH24:MI:SS"
+           ,"Has Time Zone":false
+          }
+         ,"Remote REST Data Source Server":{
+            "Filterable":true
+          }
+         ,"Advanced":{
+            "Sequence":3
+           ,"Hidden":false
+          }
+        }
+      ]
+    }
+   ,"Operations":[
+      {
+        "id":"44009323491006813"
+       ,"Label":{
+          "Label":"GET"
+        }
+       ,"Operation":{
+          "URL Pattern":"."
+         ,"HTTP Method":"GET"
+         ,"Database Operation":"Fetch Rows"
+        }
+       ,"Remote Cache":{
+          "Caching":"Disabled"
+        }
+       ,"Advanced":{
+          "Allow Fetching All Rows":false
+         ,"Force Raise HTTP-404 Error":false
+        }
+      }
+     ,{
+        "id":"44009768611006816"
+       ,"Label":{
+          "Label":"POST"
+        }
+       ,"Operation":{
+          "URL Pattern":"."
+         ,"HTTP Method":"POST"
+         ,"Database Operation":"Not Mapped"
+         ,"Request Body Template":"{\r\n  \"requestType\": \"SINGLE\",\r\n  \"tagSyntax\": \"DOCGEN_1_0\",\r\n  \"data\": {\r\n    \"source\": \"OBJECT_STORAGE\",\r\n    \"namespace\": \"my_namespace\",\r\n    \"bucketName\": \"my_bucket\",\r\n    \"objectName\": \"example.json\",\r\n    \"contentType\": \"application\/json\"\r\n  },\r\n  \"template\": {\r\n    \"source\": \"OBJECT_STORAGE\",\r\n    \"namespace\": \"my_namespace\",\r\n    \"bucketName\": \"my_bucket\",\r\n    \"objectName\": \"example.docx\",\r\n    \"contentType\": \"application\/vnd.openxmlformats-officedocument.wordprocessingml.document\"\r\n  },\r\n  \"output\": {\r\n    \"target\": \"OBJECT_STORAGE\",\r\n    \"namespace\": \"my_namespace\",\r\n    \"bucketName\": \"my_bucket\",\r\n    \"objectName\": \"example.pdf\",\r\n    \"contentType\": \"application\/pdf\"\r\n  }\r\n}"
+        }
+      }
+     ,{
+        "id":"44010189643006817"
+       ,"Label":{
+          "Label":"PUT - \/:id"
+        }
+       ,"Operation":{
+          "URL Pattern":"\/:id"
+         ,"HTTP Method":"PUT"
+         ,"Database Operation":"Update Row"
+        }
+      }
+     ,{
+        "id":"44010534882006817"
+       ,"Label":{
+          "Label":"DELETE - \/:id"
+        }
+       ,"Operation":{
+          "URL Pattern":"\/:id"
+         ,"HTTP Method":"DELETE"
+         ,"Database Operation":"Delete Row"
+        }
+      }
+    ]
+  }
+]

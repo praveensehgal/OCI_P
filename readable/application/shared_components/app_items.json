@@ -1,0 +1,16 @@
+[
+  {
+    "id":"43992280567261819"
+   ,"Identification":{
+      "Name":"APP_OBJECT_NAME"
+     ,"Scope":"Application"
+    }
+   ,"Security":{
+      "Session State Protection":"Checksum Required - Session Level"
+     ,"Escape special characters":true
+    }
+   ,"Subscription":{
+      "Version Number":41014502018740
+    }
+  }
+]
